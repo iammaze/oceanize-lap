@@ -1,8 +1,7 @@
 FROM php:7.4.2-cli-buster
-LABEL author="Oceanize"
+LABEL author="Syed Mazhar Ahmed"
 LABEL maintainer="Oceanize Inc<www.oceanize.co.jp>"
 LABEL oceanize="true"
-LABEL workercompass="true"
 
 # install git and other tools
 RUN apt-get update -y && apt-get install -y openssl unzip git
