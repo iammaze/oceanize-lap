@@ -1,14 +1,14 @@
-# start from php 7.3.5, apache based on debian linux
-FROM php:7.3.5-apache-stretch
-# credits goes here
+FROM php:7.4.2-cli-buster
+LABEL author="Oceanize"
 LABEL maintainer="Oceanize Inc<www.oceanize.co.jp>"
-# disable interactive mode
-ENV DEBIAN_FRONTEND noninteractive
+LABEL oceanize="true"
+LABEL workercompass="true"
+
+# install git and other tools
+RUN apt-get update -y && apt-get install -y openssl unzip git
 
 # install common tools
-RUN apt-get update && apt-get install -y zlib1g-dev libicu-dev g++ \
-libpng-dev libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev \
-libfreetype6-dev
+RUN apt-get update && apt-get install -y zlib1g-dev libicu-dev g++
 # install php intl extension
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
@@ -18,19 +18,10 @@ RUN docker-php-ext-install pdo_mysql
 # install mysqli library
 RUN docker-php-ext-configure mysqli
 RUN docker-php-ext-install mysqli
-# install gd library
-RUN docker-php-ext-configure gd
-RUN docker-php-ext-install gd
-# copy the apache config file
-COPY config/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
-# change uid and gid of apache to docker user uid/gid
-RUN usermod -u 1000 www-data && groupmod -g 1000 www-data
-COPY config/apache/apache2.conf /etc/apache2/apache2.conf
-# copy the PHP ini settings
-COPY config/php/* /usr/local/etc/php/conf.d/
-# enable mod-rewrite
-RUN a2enmod rewrite
-# RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
+# install git
+RUN apt-get install -y libz-dev libmemcached-dev
+RUN pecl install memcached
+RUN echo extension=memcached.so >> /usr/local/etc/php/conf.d/memcached.ini
 
 # install zip extension
 RUN apt-get install -y \
@@ -39,8 +30,8 @@ RUN apt-get install -y \
   && docker-php-ext-configure zip --with-libzip \
   && docker-php-ext-install zip
 
-# restart apache
-RUN service apache2 restart
+# copy the PHP ini settings
+COPY config/php/* /usr/local/etc/php/conf.d/
 
 # Install ImageMagick
 RUN apt-get install -y imagemagick
