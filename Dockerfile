@@ -1,7 +1,9 @@
 # start from php 7.3.5, apache based on debian linux
 FROM php:7.3.5-apache-stretch
 # credits goes here
+LABEL author="Syed Mazhar Ahmed"
 LABEL maintainer="Oceanize Inc<www.oceanize.co.jp>"
+LABEL oceanize="true"
 # disable interactive mode
 ENV DEBIAN_FRONTEND noninteractive
 
