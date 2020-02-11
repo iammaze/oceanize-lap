@@ -1,5 +1,5 @@
 # start from php 7.3.5, apache based on debian linux
-FROM php:7.3.5-apache-stretch
+FROM php:7.4.2-apache-buster
 # credits goes here
 LABEL maintainer="Oceanize Inc<www.oceanize.co.jp>"
 # disable interactive mode
@@ -36,7 +36,7 @@ RUN a2enmod rewrite
 RUN apt-get install -y \
         libzip-dev \
         zip \
-  && docker-php-ext-configure zip --with-libzip \
+  && docker-php-ext-configure zip \
   && docker-php-ext-install zip
 
 # restart apache
