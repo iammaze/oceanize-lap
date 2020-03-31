@@ -17,6 +17,9 @@ RUN docker-php-ext-install pdo_mysql
 # install mysqli library
 RUN docker-php-ext-configure mysqli
 RUN docker-php-ext-install mysqli
+# install gd library
+RUN docker-php-ext-configure gd
+RUN docker-php-ext-install gd
 # install git
 RUN apt-get install -y libz-dev libmemcached-dev
 RUN pecl install memcached
