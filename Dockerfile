@@ -49,3 +49,7 @@ RUN apt-get install -y libmagickcore-dev
 RUN apt-get install -y libmagickwand-dev
 RUN pecl install imagick
 RUN docker-php-ext-enable imagick
+
+# make the work dir
+RUN mkdir /app
+WORKDIR /app
