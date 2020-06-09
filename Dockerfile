@@ -7,7 +7,7 @@ LABEL oceanize="true"
 RUN apt-get update -y && apt-get install -y openssl unzip git libpng-dev
 
 # install common tools
-RUN apt-get update && apt-get install -y zlib1g-dev libicu-dev g++
+RUN apt-get update && apt-get install -y zlib1g-dev libicu-dev g++ jpeg-dev libpng-dev
 # install php intl extension
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
@@ -18,8 +18,8 @@ RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-configure mysqli
 RUN docker-php-ext-install mysqli
 # install gd library
-RUN docker-php-ext-configure gd
-RUN docker-php-ext-install gd
+RUN docker-php-ext-configure gd --with-jpeg
+RUN docker-php-ext-install -j$(nproc) gd
 # install git
 RUN apt-get install -y libz-dev libmemcached-dev
 RUN pecl install memcached
