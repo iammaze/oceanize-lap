@@ -4,10 +4,9 @@ LABEL maintainer="Oceanize Inc<www.oceanize.co.jp>"
 LABEL oceanize="true"
 
 # install git and other tools
-RUN apt-get update -y && apt-get install -y openssl unzip git libpng-dev
-
-# install common tools
-RUN apt-get update && apt-get install -y zlib1g-dev libicu-dev g++ libjpeg-dev
+RUN apt-get update && apt-get install -y zlib1g-dev libicu-dev g++ \
+libpng-dev libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev \
+libfreetype6-dev libjpeg-dev git unzip openssl zip libicu-dev
 # install php intl extension
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
