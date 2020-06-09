@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # install common tools
 RUN apt-get update && apt-get install -y zlib1g-dev libicu-dev g++ \
 libpng-dev libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev \
-libfreetype6-dev libjpeg-dev
+libfreetype6-dev libjpeg-dev git unzip openssl zip libicu-dev
 # install php intl extension
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
