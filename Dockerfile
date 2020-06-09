@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # install common tools
 RUN apt-get update && apt-get install -y zlib1g-dev libicu-dev g++ \
 libpng-dev libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev \
-libfreetype6-dev
+libfreetype6-dev libjpeg-dev
 # install php intl extension
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
@@ -19,8 +19,8 @@ RUN docker-php-ext-install pdo_mysql
 RUN docker-php-ext-configure mysqli
 RUN docker-php-ext-install mysqli
 # install gd library
-RUN docker-php-ext-configure gd
-RUN docker-php-ext-install gd
+RUN docker-php-ext-configure gd --with-jpeg
+RUN docker-php-ext-install -j$(nproc) gd
 # copy the apache config file
 COPY config/apache/000-default.conf /etc/apache2/sites-available/000-default.conf
 # change uid and gid of apache to docker user uid/gid
