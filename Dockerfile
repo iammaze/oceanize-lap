@@ -7,7 +7,7 @@ LABEL oceanize="true"
 RUN apt-get update -y && apt-get install -y openssl unzip git libpng-dev
 
 # install common tools
-RUN apt-get update && apt-get install -y zlib1g-dev libicu-dev g++ jpeg-dev libpng-dev
+RUN apt-get update && apt-get install -y zlib1g-dev libicu-dev g++ libjpeg-dev
 # install php intl extension
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
