@@ -1,5 +1,5 @@
-# start from php 7.3.5, apache based on debian linux
-FROM php:7.3.5-apache-stretch
+# start from php 5.6, apache based on debian linux
+FROM php:5.6-apache-stretch
 # credits goes here
 LABEL author="Syed Mazhar Ahmed"
 LABEL maintainer="Oceanize Inc<www.oceanize.co.jp>"
