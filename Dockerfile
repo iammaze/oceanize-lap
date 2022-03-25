@@ -1,5 +1,5 @@
-# start from php 7.3.5, apache based on debian linux
-FROM php:7.3.5-apache-stretch
+# start from docker pull php 5.5.38-apache
+FROM php:5.5.38-apache
 # credits goes here
 LABEL author="Syed Mazhar Ahmed"
 LABEL maintainer="Oceanize Inc<www.oceanize.co.jp>"
