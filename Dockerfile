@@ -1,5 +1,5 @@
 # start from php 7.3.5, apache based on debian linux
-FROM php:7.4.2-apache-buster
+FROM php:8.1.5-apache-buster
 # credits goes here
 LABEL maintainer="Oceanize Inc<www.oceanize.co.jp>"
 # disable interactive mode
@@ -7,8 +7,8 @@ ENV DEBIAN_FRONTEND noninteractive
 
 # install common tools
 RUN apt-get update && apt-get install -y zlib1g-dev libicu-dev g++ \
-libpng-dev libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev \
-libfreetype6-dev libjpeg-dev git unzip openssl zip libicu-dev
+  libpng-dev libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev \
+  libfreetype6-dev libjpeg-dev git unzip openssl zip libicu-dev
 # install php intl extension
 RUN docker-php-ext-configure intl
 RUN docker-php-ext-install intl
@@ -34,8 +34,8 @@ RUN a2enmod rewrite
 
 # install zip extension
 RUN apt-get install -y \
-        libzip-dev \
-        zip \
+  libzip-dev \
+  zip \
   && docker-php-ext-configure zip \
   && docker-php-ext-install zip
 
