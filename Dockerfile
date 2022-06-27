@@ -1,5 +1,5 @@
-# start from php 7.3.5, apache based on debian linux
-FROM php:8.1.5-apache-buster
+# start from php 8.1, apache based on debian linux
+FROM php:8.1-cli-buster
 # credits goes here
 LABEL maintainer="Oceanize Inc<www.oceanize.co.jp>"
 # disable interactive mode
@@ -29,7 +29,7 @@ COPY config/apache/apache2.conf /etc/apache2/apache2.conf
 # copy the PHP ini settings
 COPY config/php/* /usr/local/etc/php/conf.d/
 # enable mod-rewrite
-RUN a2enmod rewrite
+# RUN a2enmod rewrite
 # RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
 # install zip extension
@@ -40,7 +40,7 @@ RUN apt-get install -y \
   && docker-php-ext-install zip
 
 # restart apache
-RUN service apache2 restart
+# RUN service apache2 restart
 
 # Install ImageMagick
 RUN apt-get install -y imagemagick
